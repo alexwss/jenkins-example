@@ -12,10 +12,13 @@ pipeline {
 
 
                     def envsda = readFile('.env').split('\n')
+                    envsda = envsda.findAll { it.trim() != '' }
                     echo "${envsda}"
 
                     def envs = withEnv(envsda)
+                    // Remove any empty strings from the array
                     echo "${envs}"
+
                     //for (Object o : envs) {
                     //    echo "${o}"
                     //}

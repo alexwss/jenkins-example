@@ -10,7 +10,7 @@ pipeline {
                 script {
                     echo "${TESTE_DEV}"
 
-                    def envs = withEnv(readFile('${WORKSPACE}/.env').split('\n') as List)
+                    def envs = withEnv(readFile('.env').split('\n') as List)
 
                     for (Object o : envs) {
                         echo "${o}"

@@ -8,6 +8,7 @@ pipeline {
         stage('Set Environment Variables') {
             steps {
                 script {
+                    echo "${TESTE_DEV}"
                     // Set URL_TEST based on the current branch
                     switch (env.BRANCH_NAME) {
                     case 'develop':

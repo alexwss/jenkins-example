@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        TESTE_DEV = "${env.TESTE_ALEX}"
+        TESTE_DEV = ""
         URL_TEST = ''
     }
     stages {
@@ -15,9 +15,9 @@ pipeline {
                     envsda = envsda.findAll { it.trim() != '' }
                     echo "${envsda}"
 
-                    def envs = withEnv(envsda)
-                    // Remove any empty strings from the array
-                    echo "${envs}"
+                    withEnv(envsda) {
+                        TESTE_DEV = "$TESTE_ALEX"
+                    }
 
                     //for (Object o : envs) {
                     //    echo "${o}"

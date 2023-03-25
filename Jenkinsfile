@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         TESTE_DEV = ''
-        URL_TEST = ''
+        URL_TEST = '' 
     }
 
     withEnv(readFile('.env').split('\n')) {

@@ -12,6 +12,7 @@ pipeline {
             steps {
                 script  {
                     def envFileContent = readFile('.env').split('\n') as List
+
                     def envMap = envFileContent.collectEntries { envVar ->
                         def key = envVar.substring(0, envVar.indexOf('='))
                         def value = envVar.substring(envVar.indexOf('=') + 1)
@@ -35,7 +36,7 @@ pipeline {
                         error "Unsupported branch: ${env.BRANCH_NAME}"
                     }
 
-                    TESTE_DEV = "${env.TESTE_ALEX}"
+                    echo "${URL_TEST}"
                 }
             }
         }

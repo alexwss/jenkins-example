@@ -7,8 +7,10 @@ pipeline {
     }
 
     stages {
+
         stage('Set Environment Variables') {
             steps {
+                script  {
                     def envFileContent = readFile(envFilePath)
                     def envVars = envFileContent.split('\n')
                     def envMap = envVars.collectEntries { envVar ->
@@ -35,6 +37,7 @@ pipeline {
                     }
 
                     TESTE_DEV = "${env.TESTE_ALEX}"
+                }
             }
         }
 

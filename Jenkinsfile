@@ -11,8 +11,7 @@ pipeline {
         stage('Set Environment Variables') {
             steps {
                 script  {
-                    def envFilePath = ".env"
-                    def envFileContent = readFile(envFilePath)
+                    def envFileContent = readFile('.env').split('\n') as List
                     def envVars = envFileContent.split('\n')
                     def envMap = envVars.collectEntries { envVar ->
                         def key = envVar.substring(0, envVar.indexOf('='))

@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     def payload = '{"name":"alex", "surname":"silva"}'
-                    sh "curl -s -d '${payload}' -H 'Content-Type: application/json' -X POST http://localhost:8090/test"
+                    sh "curl -v -d '${payload}' -H 'Content-Type: application/json' -X POST http://192.168.56.1:8090/test"
                 }
             }
         }

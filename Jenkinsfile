@@ -17,6 +17,9 @@ pipeline {
                         )
                     def status = sh(returnStatus: true, script: "echo \$?")
                     echo "teste ${status} ..."
+
+                    def json = readJSON(text: response)
+                    echo "${json}"
                     
                 }
             }

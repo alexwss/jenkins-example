@@ -12,18 +12,17 @@ pipeline {
         script  {
           try {
             def payload = '{"teste": "teste"}'
-            def curlCommand = "curl -v -w 'status:%{http_code}' -d '${payload}' -H 'Content-Type: application/json' -X POST http://192.168.56.1:8090/test"
+            def curlCommand = "curl -v -w '&%{http_code}' -d '${payload}' -H 'Content-Type: application/json' -X POST http://192.168.56.1:8090/test"
             def response = sh(
               script: curlCommand,
               returnStdout: true
             )
 
-            echo "${response}"
+            def statusCode = response.substring(response.lastIndexOf('&') + 1, response.length())
+            echo "statusCode: ${statusCode}"
 
-            // def status = response.trim()
-            // echo "HTTP status code: ${status}"
-
-            def json = readJSON(text: response)
+            def rawJson = response.substring(0, response.lastIndexOf('&'))
+            def json = readJSON(text: rawJson)
             echo "${json}"
 
           } catch(Exception ex) {

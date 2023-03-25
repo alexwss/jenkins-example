@@ -14,7 +14,8 @@ pipeline {
                     def envsda = readFile('.env').split('\n')
                     echo "${envsda}"
 
-                    //def envs = withEnv(readFile('.env').split('\n') as List)
+                    def envs = withEnv(envsda)
+                    echo "${envs}"
                     //for (Object o : envs) {
                     //    echo "${o}"
                     //}

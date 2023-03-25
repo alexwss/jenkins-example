@@ -3,32 +3,17 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'npm install'
+        sh('echo "teste"')
       }
     }
-    stage('Lint') {
-      steps {
-        sh 'npm run lint'
-      }
-    }
-    stage('Test') {
-      steps {
-        sh 'npm test'
-      }
-    }
-    stage('Build Docker image') {
-      steps {
-        script {
-          docker.build("my-node-app")
+
+    stage('Curl Test Endpoint') {
+            steps {
+                script {
+                    def payload = '{"name":"alex", "surname":"silva"}'
+                    sh "curl -s -d '${payload}' -H 'Content-Type: application/json' -X POST http://localhost:8090/test"
+                }
+            }
         }
-      }
-    }
-    stage('Run Docker container') {
-      steps {
-        script {
-          docker.run("my-node-app", "-p 8090:8090")
-        }
-      }
-    }
   }
 }

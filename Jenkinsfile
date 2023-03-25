@@ -10,11 +10,14 @@ pipeline {
                 script {
                     echo "${TESTE_DEV}"
 
-                    def envs = withEnv(readFile('.env').split('\n') as List)
 
-                    for (Object o : envs) {
-                        echo "${o}"
-                    }
+                    def envsda = readFile('.env').split('\n')
+                    echo "${envsda}"
+
+                    //def envs = withEnv(readFile('.env').split('\n') as List)
+                    //for (Object o : envs) {
+                    //    echo "${o}"
+                    //}
 
                     // Set URL_TEST based on the current branch
                     switch (env.BRANCH_NAME) {
